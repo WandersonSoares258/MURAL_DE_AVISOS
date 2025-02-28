@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural de Avisos</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Mural de Avisos</h1>
+        <nav>
+            <a href="/">Página Inicial</a>
+            <a href="/logout">Sair</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Avisos por Departamento</h2>
+            <form action="/mural" method="get">
+                <label for="departamento">Selecione o Departamento:</label>
+                <select name="departamento" id="departamento">
+                    <% departamentos.forEach(function(departamento) { %>
+                        <option value="<%= departamento.id %>"><%= departamento.nome %></option>
+                    <% }); %>
+                </select>
+                <button type="submit">Filtrar</button>
+            </form>
+
+            <h3>Avisos:</h3>
+            <ul>
+                <% avisos.forEach(function(aviso) { %>
+                    <li>
+                        <strong><%= aviso.departamento %>:</strong> <%= aviso.mensagem %>
+                        <p><small>Postado por <%= aviso.username %> em <%= aviso.data %></small></p>
+                    </li>
+                <% }); %>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mural de Avisos - Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
